@@ -3,6 +3,7 @@ import http from "http";
 import { Server as SocketServer } from "socket.io";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { PORT } from "./config";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -25,5 +26,5 @@ io.on("connection", (socket) => {
 
 app.use(express.static(join(__dirname, "../client/dist")));
 
-server.listen(4000);
-console.log("Server on port", 4000);
+server.listen(PORT);
+console.log("Server on port", PORT);
