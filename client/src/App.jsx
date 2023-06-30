@@ -6,6 +6,7 @@ const socket = io("/");
 const App = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  let lastSenderId = "";
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -27,38 +28,42 @@ const App = () => {
     };
   }, []);
 
-  const receiveMessage = (message) => setMessages((state) => [...state, message]);
+  const receiveMessage = (message) =>
+    setMessages((state) => [...state, message]);
 
   return (
-    <main className="flex flex-col justify-around h-screen bg-zinc-900 text-white px-6 pt-6 m-auto antialiased">
-      <header>
-        <h1 className="text-2xl font-bold">Chat</h1>
+    <main className="flex flex-col justify-around h-screen bg-zinc-900 text-white px-6 pt-6 m-auto antialiased max-w-[768px]:bg-zinc-600">
+      <header className="p-5">
+        <h1 className="text-2xl font-semibold text-center">Chat con <span className="text-emerald-500">Socket.io</span> y React</h1>
       </header>
-      <section className="h-4/5 w-auto max-h-[697px] overflow-y-auto w p-5 flex flex-col-reverse">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`my-3 p-2 text-sm rounded-md w-fit ${
-              message.from === "Me"
-                ? "bg-emerald-800 ml-auto"
-                : "bg-zinc-950 mr-auto"
-            }`}
-          >
-            <div>
-              <span
-                className={`text-xs block ${
-                  message.from === "Me" ? "text-sky-300" : "text-emerald-500"
-                }`}
-              >
-                {message.from}
-              </span>
-              <div className="whitespace-normal">
-                <span>{message.body}</span>
-                <span>{message.time}</span>
+      <section className="h-4/5 w-auto max-h-[697px] overflow-y-auto p-5 flex flex-col-reverse">
+        {messages
+          .slice(0)
+          .reverse()
+          .map((message, index) => (
+            <div
+              key={index}
+              className={`my-3 p-2 text-sm rounded-md w-fit ${
+                message.from === "Me"
+                  ? "bg-emerald-800 ml-auto"
+                  : "bg-zinc-950 mr-auto"
+              }`}
+            >
+              <div>
+                <span
+                  className={`text-xs inline-block rounded-lg p-0.5 ${
+                    message.from === "Me" ? "text-sky-300" : "text-emerald-500"
+                  }`}
+                >
+                  {message.from}
+                </span>
+                <div className="whitespace-normal flex justify-between items-center">
+                  <span className="text-sm mr-3">{message.body}</span>
+                  <span className="text-xs text-gray-500">{message.time}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </section>
       <footer>
         <form onSubmit={handleSubmit} className=" p-5 rounded-md">
@@ -74,6 +79,11 @@ const App = () => {
             </button>
           </div>
         </form>
+      </footer>
+      <footer>
+        <div className="flex justify-center items-center">
+          hecho con <span className="text-emerald-500">❤</span> por{" SABHGG"}
+        </div>
       </footer>
     </main>
   );
