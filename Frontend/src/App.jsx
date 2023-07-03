@@ -6,7 +6,6 @@ const socket = io("/");
 const App = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  let lastSenderId = "";
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
