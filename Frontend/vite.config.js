@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/socket.io": {
-        target: "https://socket-io-server-70vb.onrender.com:10000",
+        target: "http://3.134.238.10:10000",
         ws: true
       },
     },
