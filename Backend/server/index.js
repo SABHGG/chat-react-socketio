@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use(express.static(join(__dirname, "../client/dist")));
+app.use(express.static(join(__dirname, "../Frontend/dist")));
 
 server.listen(PORT);
 console.log("Server on port", PORT);

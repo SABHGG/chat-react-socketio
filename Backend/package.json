@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js --ignore frontend/",
-    "build": "cd client && npm install && npm run build && cd ../server && npm install && cd .. && npm start"
+    "build": "cd Frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
