@@ -5,7 +5,8 @@ import { PORT } from "./config.js";
 
 const app = express();
 const server = http.createServer(app);
-const io = new SocketServer(server);
+const io = new SocketServer(server, { 
+  cors: { origin: "https://socket-io-client.onrender.com" } });
 
 io.on("connection", (socket) => {
   console.log("New connection");
@@ -20,7 +21,6 @@ io.on("connection", (socket) => {
     });
   });
 });
-
 
 server.listen(PORT);
 console.log("Server on port", PORT);
