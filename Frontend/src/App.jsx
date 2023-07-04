@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <main className="bg-zinc-700 h-screen flex items-center justify-center">
-      <div className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased h-[calc(100vh-3rem)]">
+      <div className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased h-[calc(100vh-1rem)]">
         <header className="p-5">
           <h1 className="text-2xl text-white font-semibold text-center">
             Chat con <span className="text-emerald-500">Socket.io</span> y React
@@ -76,6 +76,7 @@ const App = () => {
             <div className="flex gap-2 ">
               <input
                 type="text"
+                required
                 placeholder="Escribe tu mensaje"
                 className="border-2 border-zinc-500 p-2 rounded text-black w-10/12"
                 onChange={(e) => setMessage(e.target.value)}
