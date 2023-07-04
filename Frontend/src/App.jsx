@@ -85,7 +85,7 @@ const App = () => {
               <input
                 ref={inputRef}
                 type="text"
-                inputmode="tel"
+                inputmode="text"
                 required
                 placeholder="Escribe tu mensaje"
                 className="border-2 border-zinc-500 p-2 rounded text-black w-10/12"
