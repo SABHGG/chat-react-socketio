@@ -46,7 +46,7 @@ const App = () => {
             Chat con <span className="text-emerald-500">Socket.io</span> y React
           </h1>
         </header>
-        <section className="h-full w-auto max-h-[697px] overflow-y-auto p-5 flex flex-col-reverse">
+        <section className="h-full w-auto overflow-y-auto p-5 flex flex-col-reverse">
           {messages
             .slice(0)
             .reverse()
@@ -88,18 +88,18 @@ const App = () => {
                 inputmode="text"
                 required
                 placeholder="Escribe tu mensaje"
-                className="border-2 border-zinc-500 p-2 rounded text-black w-10/12"
+                className="border-2 border-zinc-500 p-2 rounded text-black w-9/12"
                 onChange={(e) => setMessage(e.target.value)}
                 value={message}
               />{" "}
-              <button className="border-2 text-white border-zinc-500 p-1 rounded text-center w-2/12">
+              <button className="border-2 text-white border-zinc-500 p-1 rounded text-center w-1/4">
                 Enviar
               </button>
             </div>
           </form>
         </footer>
         <footer>
-          <div className="flex justify-center items-center text-white gap-1">
+          <div className="flex justify-center items-center text-white gap-1 max-sm:mb-2 md:mb-2">
             hecho con <span>❤</span> por
             {
               <a
