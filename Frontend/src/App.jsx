@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
 const socket = io("https://socket-io-server-70vb.onrender.com");
@@ -6,6 +6,7 @@ const socket = io("https://socket-io-server-70vb.onrender.com");
 const App = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const inputRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -17,6 +18,7 @@ const App = () => {
     };
     setMessages([...messages, newMessage]);
     socket.emit("message", message);
+    setMessage("");
   };
 
   useEffect(() => {
@@ -25,6 +27,12 @@ const App = () => {
     return () => {
       socket.off("message", receiveMessage);
     };
+  }, []);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   }, []);
 
   const receiveMessage = (message) =>
@@ -62,10 +70,10 @@ const App = () => {
                     {message.from}
                   </span>
                   <div className="whitespace-normal flex justify-between items-center">
-                    <span className="text-sm mr-3 text-white">{message.body}</span>
-                    <span className="text-xs text-gray-50">
-                      {message.time}
+                    <span className="text-sm mr-3 text-white">
+                      {message.body}
                     </span>
+                    <span className="text-xs text-gray-50">{message.time}</span>
                   </div>
                 </div>
               </div>
@@ -75,11 +83,14 @@ const App = () => {
           <form onSubmit={handleSubmit} className=" p-5 rounded-md">
             <div className="flex gap-2 ">
               <input
+                ref={inputRef}
                 type="text"
+                inputmode="tel"
                 required
                 placeholder="Escribe tu mensaje"
                 className="border-2 border-zinc-500 p-2 rounded text-black w-10/12"
                 onChange={(e) => setMessage(e.target.value)}
+                value={message}
               />{" "}
               <button className="border-2 text-white border-zinc-500 p-1 rounded text-center w-2/12">
                 Enviar
@@ -91,7 +102,11 @@ const App = () => {
           <div className="flex justify-center items-center text-white gap-1">
             hecho con <span>❤</span> por
             {
-              <a href="https://github.com/SABHGG" target="_blank" className="text-emerald-500">
+              <a
+                href="https://github.com/SABHGG"
+                target="_blank"
+                className="text-emerald-500"
+              >
                 {"SABHGG"}
               </a>
             }
