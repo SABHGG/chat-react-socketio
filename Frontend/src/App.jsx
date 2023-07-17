@@ -1,7 +1,7 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-const socket = io("https://socket-io-server-70vb.onrender.com"); 
+const socket = io("https://socket-io-server-70vb.onrender.com");
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -32,14 +32,14 @@ const App = () => {
     setMessages((state) => [...state, message]);
 
   return (
-    <main className="bg-zinc-700 h-screen flex items-center justify-center">
-      <div className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased">
-        <header className="p-5">
+    <main className="bg-zinc-700 flex items-center justify-center h-screen py-8">
+      <section className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased h-full">
+        <div className="p-5">
           <h1 className="text-2xl text-white font-semibold text-center">
             Chat con <span className="text-emerald-500">Socket.io</span> y React
           </h1>
-        </header>
-        <section className="h-full w-auto overflow-y-auto p-5 flex flex-col-reverse">
+        </div>
+        <div className="h-full w-auto overflow-y-auto p-5 flex flex-col-reverse">
           {messages
             .slice(0)
             .reverse()
@@ -71,8 +71,8 @@ const App = () => {
                 </div>
               </div>
             ))}
-        </section>
-        <footer>
+        </div>
+        <div>
           <form onSubmit={handleSubmit} className=" p-5 rounded-md">
             <div className="flex gap-2 ">
               <input
@@ -89,7 +89,7 @@ const App = () => {
               </button>
             </div>
           </form>
-        </footer>
+        </div>
         <footer>
           <div className="flex justify-center items-center text-white gap-1 max-sm:mb-2 md:mb-2">
             hecho con <span>❤</span> por
@@ -104,7 +104,7 @@ const App = () => {
             }
           </div>
         </footer>
-      </div>
+      </section>
     </main>
   );
 };
