@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import io from "socket.io-client";
 
-const socket = io("https://socket-io-server-70vb.onrender.com");
+const socket = io("https://socket-io-server-70vb.onrender.com"); 
 
 const App = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const inputRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
     const date = new Date();
@@ -27,12 +26,6 @@ const App = () => {
     return () => {
       socket.off("message", receiveMessage);
     };
-  }, []);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
   }, []);
 
   const receiveMessage = (message) =>
@@ -83,9 +76,8 @@ const App = () => {
           <form onSubmit={handleSubmit} className=" p-5 rounded-md">
             <div className="flex gap-2 ">
               <input
-                ref={inputRef}
                 type="text"
-                inputmode="text"
+                inputMode="text"
                 required
                 placeholder="Escribe tu mensaje"
                 className="border-2 border-zinc-500 p-2 rounded text-black w-9/12"
