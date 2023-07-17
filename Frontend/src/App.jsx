@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <main className="bg-zinc-700 h-screen flex items-center justify-center">
-      <div className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased h-[calc(100vh-2rem)] sm:h-[calc(100vh-2rem)]">
+      <div className="flex flex-col w-[1000px] mx-4 my-4 bg-zinc-900 rounded-3xl antialiased">
         <header className="p-5">
           <h1 className="text-2xl text-white font-semibold text-center">
             Chat con <span className="text-emerald-500">Socket.io</span> y React
